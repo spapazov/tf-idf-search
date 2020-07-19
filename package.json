@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/spapazov/TF-IDF/issues"
   },
-  "homepage": "https://github.com/spapazov/TF-IDF#readme"
+  "homepage": "https://github.com/spapazov/TF-IDF#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "util": "^0.12.3"
+  }
 }
