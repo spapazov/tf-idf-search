@@ -50,7 +50,7 @@ tf_idf.addDocument("String containing doucment contents");
 
 After instantiating a corpus and loading your documents you can calculate the tf-idf vectors, deterimine cosine similarity and rank the relavance of documents based on queries:
 
-```
+``` js script
 //Rank documents relative to a query containing a String of keywords
 var search_result = tf_idf.rankDocumentsByQuery("javascript npm keyword search")
 ```
