@@ -1,7 +1,7 @@
 {
   "name": "tf-idf-search",
-  "version": "1.0.0",
-  "description": "An implementation of the tf-idf vector space model for text data",
+  "version": "1.0.3",
+  "description": "An implementation of the tf-idf vector space model for keyword search",
   "main": "vector_space.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/spapazov/TF-IDF.git"
   },
+  "keywords": [
+    "tf-idf",
+    "query",
+    "search",
+    "vector space model"
+  ],
   "author": "spapazov",
   "license": "MIT",
   "bugs": {
