@@ -12,14 +12,16 @@ var fs = require('fs');
 
 class TfIdf {
 
-  constructor() {}
+  constructor() {this.corpus =[]}
 
 /*
 * Breaks a string into an array of words (aka document)
 */
-  createDocumentFromString(str) {
+  addDocument(str) {
     str = str.replace('\\n'," ");
-    return str.split(" ");
+    strArray = str.split(" ")
+    this.corpus.push(strArray)
+    return strArray;;
   }
 
 
@@ -65,7 +67,6 @@ class TfIdf {
 * number of ocurrences of the term /length of document;
 */
   calculateTermFrequency(term, doc) {
-
     let numOccurences = 0;
     for (let i = 0; i < doc.length; i++){
       if (doc[i].toLowerCase() == term.toLowerCase()){
@@ -99,6 +100,7 @@ class TfIdf {
   */
 
   createIdfModel(query) {
+    query = Array.isArray(query) ? query: query.split(" ");
     if (this.corpus == null) return null;
     let model = [];
     for(let i = 0; i < query.length; i++){
@@ -113,6 +115,7 @@ class TfIdf {
   */
 
   createVectorSpaceModel(query, doc) {
+    query = Array.isArray(query) ? query: query.split(" ");
     if (this.corpus == null) return null;
     let termFrequencyModel = [];
     let vectorSpaceModel = []
@@ -133,6 +136,7 @@ class TfIdf {
   * a match it is to the query.
   */
   calculateSimilarityIndex(query, doc){
+    query = Array.isArray(query) ? query: query.split(" ");
     let query_vector = this.createVectorSpaceModel(query, query);
     let doc_vector = this.createVectorSpaceModel(query, doc);
     let similarityIndex = 0;
@@ -161,6 +165,7 @@ class TfIdf {
       ranking.push({
         document: this.corpus[i],
         similarityIndex: this.calculateSimilarityIndex(query, this.corpus[i]),
+        index: i,
         });
     }
     ranking.sort((a, b) => {

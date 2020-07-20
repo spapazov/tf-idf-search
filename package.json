@@ -1,5 +1,5 @@
 {
-  "name": "tf-idf",
+  "name": "tf-idf-search",
   "version": "1.0.0",
   "description": "An implementation of the tf-idf vector space model for text data",
   "main": "vector_space.js",
