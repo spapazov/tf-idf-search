@@ -1,6 +1,6 @@
 {
   "name": "tf-idf-search",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "An implementation of the tf-idf vector space model for keyword search",
   "main": "vector_space.js",
   "scripts": {
