@@ -29,7 +29,7 @@ npm install tf-idf-search
 ## Usage
 In order to begin using the package please instantiate a TF-IDF object and load your documents. Loading documents can either be done by passing a String array or an array of paths to the respective files:
 
-```
+``` js script
 TF-IDF = require('tf-idf-search')
 tf-idf = new TF-IDF()
 
@@ -56,7 +56,7 @@ var search_result = tf_idf.rankDocumentsByQuery("javascript npm keyword search")
 ```
 This will output an array of objects, which contain the relevent search results in order of most relevant to least relevant. The index property corresponds to the documents position in the corpus:
 
-```
+``` js script
 [
     {
       document: ['this', 'is', 'content', 'of, 'document', '1'],
@@ -78,7 +78,7 @@ This will output an array of objects, which contain the relevent search results 
 
 You can also compute individual operations as follows:
 
-```
+``` js script
 // Create the idf vector for an input query
 var vector = tf_idf.createIdfModel('Romeo Juliet playwrite');   // [1.2341, 0.124, 1.531]
 
