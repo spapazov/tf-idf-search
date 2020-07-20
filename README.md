@@ -57,7 +57,6 @@ var search_result = tf_idf.rankDocumentsByQuery("javascript npm keyword search")
 This will output an array of objects, which contain the relevent search results in order of most relevant to least relevant. The index property corresponds to the documents position in the corpus:
 
 ```
-//
 [
     {
       document: ['this', 'is', 'content', 'of, 'document', '1'],
@@ -81,10 +80,10 @@ You can also compute individual operations as follows:
 
 ```
 // Create the idf vector for an input query
-var vector = tf_idf.createIdfModel('Romeo Juliet playwrite');   // [1.2341, 0.124, 1.531] 
+var vector = tf_idf.createIdfModel('Romeo Juliet playwrite');   // [1.2341, 0.124, 1.531]
 
 // Create tf-idf vector for a document given input query
-var vector = tf_idf.createVectorSpaceModel('Romeo Juliet playwrite', tf_idf.corpus[0]); // [0.257, 1.245, 0.1] 
+var vector = tf_idf.createVectorSpaceModel('Romeo Juliet playwrite', tf_idf.corpus[0]); // [0.257, 1.245, 0.1]
 
 // Calculate similarity index between a document and a given input query
 var similarity = tf_idf.calculateSimilarityIndex('Romeo Juliet playwrite', tf_idf.corpus[0]);  // 0.3421
