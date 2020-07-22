@@ -100,11 +100,10 @@ This function returns an array outlining the mapping of every document in the co
     {
       index: 1,
       document: '\test2.text',
-      index: 1,
     },
     {
-      index: "document added as a string format",
-      document: ['this', 'is', 'content', 'of, 'document', '3'],
+      index: 2,
+      document: "document added as a string format",
     },
 ]
 ```
