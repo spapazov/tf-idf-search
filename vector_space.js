@@ -12,16 +12,41 @@ var fs = require('fs');
 
 class TfIdf {
 
-  constructor() {this.corpus =[]}
+  constructor() {this.corpus =[], this.tracker =[]}
 
 /*
 * Breaks a string into an array of words (aka document)
 */
-  addDocument(str) {
-    str = str.replace('\\n'," ");
-    strArray = str.split(" ")
-    this.corpus.push(strArray)
-    return strArray;;
+  addDocumentFromString(str) {
+    let strArray = str
+    .replace(/[\r\n]/g," ")
+    .trim()
+    .split(" ");
+    this.corpus.push(strArray);
+    this.tracker.push({
+      index: this.corpus.length - 1,
+      document: str
+    })
+    return this.corpus
+  }
+
+  /*
+  * Adds document from file path
+  */
+  addDocumentFromPath(path) {
+    try {
+      let data = fs.readFileSync(path, {encoding: 'utf8'});
+      data = data.replace(/[\r\n]/g," ")
+      data = data.trim();
+      this.corpus.push(data.split(" "));
+      this.tracker.push({
+        index: this.corpus.length - 1,
+        document: path
+      })
+    } catch (err) {
+      throw err
+    }
+    return this.corpus
   }
 
 
@@ -31,14 +56,18 @@ class TfIdf {
   createCorpusFromStringArray(docs) {
     let corpus = [];
     for(let i = 0; i < docs.length; i++) {
-      corpus.push(
+      this.corpus.push(
         docs[i]
-        .replace('\\n',"")
+        .replace(/[\r\n]/g," ")
+        .trim()
         .split(" ")
       );
+      this.tracker.push({
+        index: this.corpus.length - 1,
+        document: docs[i]
+      })
     }
-    this.corpus = corpus;
-    return corpus;
+    return this.corpus
   }
 
 /*
@@ -52,13 +81,16 @@ class TfIdf {
         let data = fs.readFileSync(docs[i], {encoding: 'utf8'});
         data = data.replace(/[\r\n]/g," ")
         data = data.trim();
-        corpus.push(data.split(" "));
+        this.corpus.push(data.split(" "));
+        this.tracker.push({
+          index: this.corpus.length - 1,
+          document: docs[i]
+        })
       } catch (err) {
         throw err
       }
     }
-    this.corpus = corpus;
-    return corpus
+    return this.corpus
   }
 
 /*
@@ -84,9 +116,9 @@ class TfIdf {
   calculateInverseDocumentFrequency(term) {
     if (this.corpus == null) return -1;
     let numDocs = 0;
-    for (let i = 0; i< corpus.length; i++){
-      for (let j = 0; j < corpus[i].length; j++) {
-        if (corpus[i][j] == term.toLowerCase()){
+    for (let i = 0; i< this.corpus.length; i++){
+      for (let j = 0; j < this.corpus[i].length; j++) {
+        if (this.corpus[i][j] == term.toLowerCase()){
           numDocs++;
           break;
         }
@@ -188,6 +220,13 @@ class TfIdf {
       }
     }
     return Math.sqrt(magnitude);
+  }
+
+  /*
+  * Find tracker of original documents
+  */
+  indicesOfInputs() {
+    return this.tracker;
   }
 
 }

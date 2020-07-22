@@ -33,19 +33,21 @@ In order to begin using the package please instantiate a TF-IDF object and load 
 TfIdf = require('tf-idf-search');
 tf_idf = new TfIdf()
 
-//initialize corpus from an array of file paths
+//initialize corpus from an array of file paths, returns the current state of the corpus
 var corpus = tf_idf.createCorpusFromPathArray(["./doc1.txt", "./doc2.txt", "doc3.txt"]);
 
-//initialize corpus from an array of Strings
-var corpus = tf_idf.createCorpusFromPathArray(
+//initialize corpus from an array of Strings, returns the current state of the corpus
+var corpus = tf_idf.createCorpusFromStringArray(
 ["This is the content of doc1",
 "This is the content of doc2",
 "This is the content of doc3"]
 );
 
-//add document to the corpus
-tf_idf.addDocument("String containing doucment contents");
+//add document to the corpus by string , returns the current state of the corpus
+var corpus = tf_idf.addDocumentFromString("String containing doucment contents");
 
+//add document to the corpus by file path, returns the current state of the corpus
+var corpus = tf_idf.addDocumentFromPath("./doc2.txt");
 ```
 
 After instantiating a corpus and loading your documents you can calculate the tf-idf vectors, deterimine cosine similarity and rank the relavance of documents based on queries:
@@ -76,7 +78,39 @@ This will output an array of objects, which contain the relevent search results 
 ]
 ```
 
-You can also compute individual operations as follows:
+If you wish to see the mapping between the returned indicees and the original input format of your document, you can use the
+indicesOfInputs() function as follows:
+
+``` js script
+/*
+* Find mapping between indices and original inputs
+* returns an array of objects
+*/
+var indices = tf_idf.indicesOfInputs()
+```
+
+This function returns an array outlining the mapping of every document in the corpus as follows:
+```
+[
+    {
+      index: 0,
+      document: '\test1.txt',
+
+    },
+    {
+      index: 1,
+      document: '\test2.text',
+      index: 1,
+    },
+    {
+      index: "document added as a string format",
+      document: ['this', 'is', 'content', 'of, 'document', '3'],
+    },
+]
+```
+
+
+In addition to the above operation, you can also compute individual aspects of the tf-idf model as follows:
 
 ``` js script
 // Create the idf vector for an input query
