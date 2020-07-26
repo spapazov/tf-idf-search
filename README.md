@@ -1,6 +1,6 @@
 # TF-IDF Document Search
 
-TF-IDF Document Search is a Node.js library for information retrieval and keyword search. The implementation allows one to instantiate a corpus of documents and compute their similarity relative to an input query and/or document. Using this measure of similar one can compute which document in their corpus is most relevant to a particular query and/or input document.
+TF-IDF Document Search is a Node.js library for information retrieval and keyword search. The implementation allows one to instantiate a corpus of documents and compute their similarity relative to an input query and/or document. Using this measure of similarity one can compute which document in their corpus is most relevant to a particular query and/or input document.
 
 ## Background
 
